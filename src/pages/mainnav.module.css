@@ -1,0 +1,15 @@
+.navLink {
+    color: #2c2c2c;
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin-left: 20px;
+}
+
+.activeNav {
+    color: green;
+    font-weight: 500;
+}
+
+.navLink:hover {
+    color: green;
+}
