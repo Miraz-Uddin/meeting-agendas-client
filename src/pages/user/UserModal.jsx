@@ -28,21 +28,32 @@ export default function UserModal(props) {
   const [userDesignation, setUserDesignation] = useState(designation ?? " ");
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (id) {
-      updateUser({
-        id,
-        data: {
+    if (
+      userName === null ||
+      userName === undefined ||
+      userName === "" ||
+      userDesignation === null ||
+      userDesignation === undefined ||
+      userDesignation === ""
+    ) {
+      enqueueSnackbar("Please Fillup all fields", { variant: "error" });
+    } else {
+      if (id) {
+        updateUser({
+          id,
+          data: {
+            name: userName,
+            designation: userDesignation,
+          },
+        });
+      } else {
+        storeUser({
           name: userName,
           designation: userDesignation,
-        },
-      });
-    } else {
-      storeUser({
-        name: userName,
-        designation: userDesignation,
-      });
+        });
+      }
+      onHide();
     }
-    onHide();
   };
 
   useEffect(() => {

@@ -46,13 +46,14 @@ export default function Users() {
             >
               Edit
             </Button>{" "}
-            <Button
+            {/* Will work later */}
+            {/* <Button
               variant="danger"
               size="sm"
               onClick={() => handleDeleteUser(user.id)}
             >
               Delete
-            </Button>{" "}
+            </Button> */}
           </td>
         </tr>
       );
