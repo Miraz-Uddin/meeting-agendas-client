@@ -1,10 +1,16 @@
+import { useSnackbar } from "notistack";
 import { React, useState } from "react";
 import { Button, Table } from "react-bootstrap";
-import { useGetUsersQuery } from "../../features/user/userAPI";
+import {
+  useDeleteUserMutation,
+  useGetUsersQuery,
+} from "../../features/user/userAPI";
 import UserModal from "./UserModal";
 
 export default function Users() {
+  const { enqueueSnackbar } = useSnackbar();
   const { data: users, isLoading, isError } = useGetUsersQuery();
+  const [deleteUser] = useDeleteUserMutation();
   let content;
   if (isLoading)
     content = (
@@ -40,7 +46,11 @@ export default function Users() {
             >
               Edit
             </Button>{" "}
-            <Button variant="danger" size="sm">
+            <Button
+              variant="danger"
+              size="sm"
+              onClick={() => handleDeleteUser(user.id)}
+            >
               Delete
             </Button>{" "}
           </td>
@@ -64,6 +74,13 @@ export default function Users() {
   const handleEditHide = () => {
     setUserInfo(undefined);
     setEditModal(false);
+  };
+
+  const handleDeleteUser = (id) => {
+    enqueueSnackbar("User Deleted Successfully", {
+      variant: "success",
+    });
+    deleteUser(id);
   };
 
   return (
