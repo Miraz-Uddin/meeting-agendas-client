@@ -13,19 +13,25 @@ export default function Users() {
   if (isLoading)
     content = (
       <tr>
-        <td>Users Loading ....</td>
+        <td colSpan="4" className="text-center">
+          Users Loading ....
+        </td>
       </tr>
     );
   if (!isLoading && isError)
     content = (
       <tr>
-        <td>Error while Fetching Users</td>
+        <td colSpan="4" className="text-center">
+          Error while Fetching Users
+        </td>
       </tr>
     );
   if (!isLoading && !isError && users?.length === 0)
     content = (
       <tr>
-        <td>No Users Found</td>
+        <td colSpan="4" className="text-center">
+          No Users Found
+        </td>
       </tr>
     );
   if (!isLoading && !isError && users?.length > 0) {

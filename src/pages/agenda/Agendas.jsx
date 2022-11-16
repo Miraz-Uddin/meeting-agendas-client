@@ -2,7 +2,6 @@ import moment from "moment/moment";
 import { React, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { useGetAgendasQuery } from "../../features/agenda/agendaAPI.js";
-import Facilitator from "../meeting/Facilitator";
 import AgendaModal from "./AgendaModal";
 // import { useSnackbar } from "notistack";
 // import {useDeleteAgendaMutation} from "../../features/agenda/agendaAPI.js";
@@ -15,19 +14,25 @@ export default function Agendas() {
   if (isLoading)
     content = (
       <tr>
-        <td>Agendas Loading ....</td>
+        <td colSpan="8" className="text-center">
+          Agendas Loading ....
+        </td>
       </tr>
     );
   if (!isLoading && isError)
     content = (
       <tr>
-        <td>Error while Fetching Agendas</td>
+        <td colSpan="8" className="text-center">
+          Error while Fetching Agendas
+        </td>
       </tr>
     );
   if (!isLoading && !isError && agendas?.length === 0)
     content = (
       <tr>
-        <td>No Agendas Found</td>
+        <td colSpan="8" className="text-center">
+          No Agendas Found
+        </td>
       </tr>
     );
   if (!isLoading && !isError && agendas?.length > 0) {
@@ -44,9 +49,7 @@ export default function Agendas() {
             {moment(agenda.endTime).format("h:mm a | DD MMMM")}
           </td>
           <td className="text-center">{agenda.shortDescription ?? "- - -"}</td>
-          <td className="text-center">
-            <Facilitator userId={agenda.speaker} />{" "}
-          </td>
+          <td className="text-center">{agenda?.speaker?.name}</td>
           <td>
             {" "}
             <Button

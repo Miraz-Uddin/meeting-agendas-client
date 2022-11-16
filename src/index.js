@@ -15,8 +15,8 @@ root.render(
       <SnackbarProvider
         maxSnack={1}
         anchorOrigin={{
-          vertical: "top",
-          horizontal: "center",
+          vertical: "bottom",
+          horizontal: "right",
         }}
         TransitionComponent={Fade}
       >

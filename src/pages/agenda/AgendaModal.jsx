@@ -49,7 +49,7 @@ export default function AgendaModal(props) {
   const [agendaShortDescription, setAgendaShortDescription] = useState(
     shortDescription ?? " "
   );
-  const [agendaSpeaker, setAgendaSpeaker] = useState(speaker ?? []);
+  const [agendaSpeaker, setAgendaSpeaker] = useState(speaker?.id);
   const [agendaMeetingId, setAgendaMeetingId] = useState(meetingId ?? null);
   const [agendaMeetingInfo, setAgendaMeetingInfo] = useState(meetingId ?? null);
 
@@ -114,10 +114,36 @@ export default function AgendaModal(props) {
             }
           );
         } else {
-          if (+agendaSpeaker !== 0) {
-            let isFound = agendaMeetingInfo.attendees.find(
-              (el) => el.id === +agendaSpeaker
-            );
+          if (agendaSpeaker === undefined) {
+            if (id) {
+              updateAgenda({
+                id,
+                data: {
+                  name: agendaName,
+                  shortDescription: agendaShortDescription ?? null,
+                  startTime: agendaBegin,
+                  endTime: agendaEnd,
+                  speaker: {},
+                  meetingId: agendaMeetingId,
+                },
+              });
+            } else {
+              storeAgenda({
+                name: agendaName,
+                shortDescription: agendaShortDescription ?? null,
+                startTime: agendaBegin,
+                endTime: agendaEnd,
+                speaker: {},
+                meetingId: agendaMeetingId,
+              });
+            }
+            onHide();
+          } else if (agendaSpeaker !== undefined && +agendaSpeaker !== 0) {
+            let speakerInfo;
+            let isFound = agendaMeetingInfo.attendees.find((el) => {
+              speakerInfo = el;
+              return el.id === +agendaSpeaker;
+            });
             if (isFound) {
               if (id) {
                 updateAgenda({
@@ -127,7 +153,8 @@ export default function AgendaModal(props) {
                     shortDescription: agendaShortDescription ?? null,
                     startTime: agendaBegin,
                     endTime: agendaEnd,
-                    speaker: +agendaSpeaker,
+                    // speaker: +agendaSpeaker,
+                    speaker: speakerInfo,
                     meetingId: agendaMeetingId,
                   },
                 });
@@ -137,7 +164,8 @@ export default function AgendaModal(props) {
                   shortDescription: agendaShortDescription ?? null,
                   startTime: agendaBegin,
                   endTime: agendaEnd,
-                  speaker: +agendaSpeaker,
+                  speaker: speakerInfo,
+                  // speaker: +agendaSpeaker,
                   meetingId: agendaMeetingId,
                 });
               }
@@ -159,7 +187,7 @@ export default function AgendaModal(props) {
                   shortDescription: agendaShortDescription ?? null,
                   startTime: agendaBegin,
                   endTime: agendaEnd,
-                  speaker: null,
+                  speaker: {},
                   meetingId: agendaMeetingId,
                 },
               });
@@ -169,7 +197,7 @@ export default function AgendaModal(props) {
                 shortDescription: agendaShortDescription ?? null,
                 startTime: agendaBegin,
                 endTime: agendaEnd,
-                speaker: null,
+                speaker: {},
                 meetingId: agendaMeetingId,
               });
             }
@@ -195,7 +223,7 @@ export default function AgendaModal(props) {
       const timeB = new Date(endTime);
       setAgendaEndTime(timeB);
     }
-    setAgendaSpeaker(speaker === undefined ? "" : speaker);
+    setAgendaSpeaker(speaker?.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [agenda]);
 
