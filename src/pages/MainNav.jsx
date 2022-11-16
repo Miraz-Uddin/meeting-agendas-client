@@ -18,9 +18,9 @@ export default function MainNav() {
     setActiveMenu("users");
   };
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="dark" expand="lg">
       <Container fluid>
-        <Navbar.Brand href="#">Company Logo</Navbar.Brand>
+        {/* <Navbar.Brand href="#">Company Logo</Navbar.Brand> */}
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
