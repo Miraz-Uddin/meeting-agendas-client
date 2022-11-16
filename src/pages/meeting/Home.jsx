@@ -1,18 +1,16 @@
 import moment from "moment/moment";
-import { useSnackbar } from "notistack";
 import { React, useState } from "react";
 import { Button, Table } from "react-bootstrap";
-import {
-  useDeleteMeetingMutation,
-  useGetMeetingsQuery,
-} from "../../features/meeting/meetingAPI";
+import { useGetMeetingsQuery } from "../../features/meeting/meetingAPI";
 import Facilitator from "./Facilitator";
 import MeetingModal from "./MeetingModal";
+// import { useSnackbar } from "notistack";
+// import {useDeleteMeetingMutation} from "../../features/meeting/meetingAPI";
 
 export default function Home() {
-  const { enqueueSnackbar } = useSnackbar();
+  // const { enqueueSnackbar } = useSnackbar();
   const { data: meetings, isLoading, isError } = useGetMeetingsQuery();
-  const [deleteMeeting] = useDeleteMeetingMutation();
+  // const [deleteMeeting] = useDeleteMeetingMutation();
   let content;
   if (isLoading)
     content = (
@@ -91,12 +89,12 @@ export default function Home() {
     setEditModal(false);
   };
 
-  const handleDeleteMeeting = (id) => {
-    enqueueSnackbar("Meeting Deleted Successfully", {
-      variant: "success",
-    });
-    deleteMeeting(id);
-  };
+  // const handleDeleteMeeting = (id) => {
+  //   enqueueSnackbar("Meeting Deleted Successfully", {
+  //     variant: "success",
+  //   });
+  //   deleteMeeting(id);
+  // };
 
   return (
     <div className="p-4">

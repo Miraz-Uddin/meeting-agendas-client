@@ -1,8 +1,19 @@
 import { apiSlice } from "../api/apiSlice";
-const meetingAPI = apiSlice.injectEndpoints({
+export const meetingAPI = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getMeetings: builder.query({
       query: () => `/meetings`,
+      providesTags: [
+        "StoreUser",
+        "UpdateUser",
+        "DeleteUser",
+        "StoreMeeting",
+        "UpdateMeeting",
+        "DeleteMeeting",
+      ],
+    }),
+    getMeeting: builder.query({
+      query: (meetingId) => `/meetings/${meetingId}`,
       providesTags: [
         "StoreUser",
         "UpdateUser",
@@ -43,4 +54,5 @@ export const {
   useStoreMeetingMutation,
   useUpdateMeetingMutation,
   useDeleteMeetingMutation,
+  useGetMeetingQuery,
 } = meetingAPI;
