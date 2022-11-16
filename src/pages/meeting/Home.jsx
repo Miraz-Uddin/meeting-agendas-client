@@ -4,6 +4,7 @@ import { Button, Table } from "react-bootstrap";
 import { useGetMeetingsQuery } from "../../features/meeting/meetingAPI";
 import Facilitator from "./Facilitator";
 import MeetingModal from "./MeetingModal";
+import PDFModal from "./PDFModal";
 // import { useSnackbar } from "notistack";
 // import {useDeleteMeetingMutation} from "../../features/meeting/meetingAPI";
 
@@ -15,19 +16,25 @@ export default function Home() {
   if (isLoading)
     content = (
       <tr>
-        <td>Meetings Loading ....</td>
+        <td colSpan="6" className="text-center">
+          Meetings Loading ....
+        </td>
       </tr>
     );
   if (!isLoading && isError)
     content = (
       <tr>
-        <td>Error while Fetching Meetings</td>
+        <td colSpan="6" className="text-center">
+          Error while Fetching Meetings
+        </td>
       </tr>
     );
   if (!isLoading && !isError && meetings?.length === 0)
     content = (
       <tr>
-        <td>No Meetings Found</td>
+        <td colSpan="6" className="text-center">
+          No Meetings Found
+        </td>
       </tr>
     );
   if (!isLoading && !isError && meetings?.length > 0) {
@@ -54,6 +61,13 @@ export default function Home() {
             >
               Edit
             </Button>{" "}
+            <Button
+              variant="dark"
+              size="sm"
+              onClick={() => handlePDFModal(meeting)}
+            >
+              Print PDF
+            </Button>{" "}
             {/* Will work later */}
             {/* <Button
               variant="danger"
@@ -70,6 +84,7 @@ export default function Home() {
 
   const [editModal, setEditModal] = useState(false);
   const [addModal, setAddModal] = useState(false);
+  const [pdfModal, setPdfModal] = useState(false);
   const [meetingInfo, setMeetingInfo] = useState(undefined);
   const handleAdd = () => {
     setMeetingInfo(undefined);
@@ -88,6 +103,14 @@ export default function Home() {
     setMeetingInfo(undefined);
     setEditModal(false);
   };
+  const handlePDFModal = (meeting) => {
+    setPdfModal(true);
+    setMeetingInfo(meeting);
+  };
+  const handlePDFModalHide = (meeting) => {
+    setPdfModal(false);
+    setMeetingInfo(undefined);
+  };
 
   // const handleDeleteMeeting = (id) => {
   //   enqueueSnackbar("Meeting Deleted Successfully", {
@@ -98,6 +121,11 @@ export default function Home() {
 
   return (
     <div className="p-4">
+      <PDFModal
+        meeting={meetingInfo}
+        show={pdfModal}
+        onHide={handlePDFModalHide}
+      />
       <MeetingModal
         meeting={undefined}
         show={addModal}

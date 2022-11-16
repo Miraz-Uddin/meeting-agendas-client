@@ -80,27 +80,36 @@ export default function MeetingModal(props) {
             { variant: "warning" }
           );
         } else {
-          if (id) {
-            updateMeeting({
-              id,
-              data: {
+          const difference = Math.floor(
+            (meetingEnd - meetingBegin) / 1000 / 60 / 60 / 24
+          );
+          if (difference > 0 || difference < 0) {
+            enqueueSnackbar("Meeting Should be Conducted in a Single Day", {
+              variant: "info",
+            });
+          } else {
+            if (id) {
+              updateMeeting({
+                id,
+                data: {
+                  title: meetingTitle,
+                  startTime: meetingBegin,
+                  endTime: meetingEnd,
+                  facilitator: +meetingFacilitator,
+                  attendees: meetingAttendees,
+                },
+              });
+            } else {
+              storeMeeting({
                 title: meetingTitle,
                 startTime: meetingBegin,
                 endTime: meetingEnd,
                 facilitator: +meetingFacilitator,
                 attendees: meetingAttendees,
-              },
-            });
-          } else {
-            storeMeeting({
-              title: meetingTitle,
-              startTime: meetingBegin,
-              endTime: meetingEnd,
-              facilitator: +meetingFacilitator,
-              attendees: meetingAttendees,
-            });
+              });
+            }
+            onHide();
           }
-          onHide();
         }
       }
     }
