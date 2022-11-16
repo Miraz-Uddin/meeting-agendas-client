@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./mainnav.module.css";
 
 export default function MainNav() {
-  const [activeMenu, setActiveMenu] = useState("home");
+  const { pathname } = useLocation();
+  const path = pathname.split("/")[1];
+  const [activeMenu, setActiveMenu] = useState(path === "" ? "home" : path);
   const activeHome = () => {
     setActiveMenu("home");
   };
