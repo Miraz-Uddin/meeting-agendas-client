@@ -87,7 +87,7 @@ export default function MeetingModal(props) {
                 title: meetingTitle,
                 startTime: meetingBegin,
                 endTime: meetingEnd,
-                facilitator: meetingFacilitator,
+                facilitator: +meetingFacilitator,
                 attendees: meetingAttendees,
               },
             });
@@ -96,7 +96,7 @@ export default function MeetingModal(props) {
               title: meetingTitle,
               startTime: meetingBegin,
               endTime: meetingEnd,
-              facilitator: meetingFacilitator,
+              facilitator: +meetingFacilitator,
               attendees: meetingAttendees,
             });
           }

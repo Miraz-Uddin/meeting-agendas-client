@@ -77,8 +77,8 @@ export default function Home() {
     setMeetingInfo(undefined);
     setAddModal(true);
   };
-  const handleEdit = (user) => {
-    setMeetingInfo(user);
+  const handleEdit = (meeting) => {
+    setMeetingInfo(meeting);
     setEditModal(true);
   };
 
