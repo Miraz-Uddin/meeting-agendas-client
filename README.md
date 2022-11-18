@@ -48,6 +48,8 @@
 
 ## How to run
 
+### Locally
+
 1. Login to the GitHub account on which you have been granted access to this repository. Happy Coding.
 
 2. Clone this repository -
@@ -68,7 +70,15 @@
    npm start
    ```
 
-<br>
+### Remotely
+
+1. Go to Browser
+
+2. Type Below code in the URL
+   ```sh
+   https://miraz-agendas-template.netlify.app
+   ```
+   <br>
 
 <!-- CONTACT  -->
 
