@@ -2,7 +2,7 @@
 <br />
  <p align="center">
     <img src="./public/logo192.png" alt="Logo"  />
-    <h3 align="center "><a href="" target="_blank" >Agenda Template</a></h3>
+    <h3 align="center "><a href="https://meeting-agendas-client-9l6kc6ntj-miraz-uddin.vercel.app" target="_blank" >Agenda Template</a></h3>
 </p>
 
 <!-- TABLE OF CONTENTS -->
