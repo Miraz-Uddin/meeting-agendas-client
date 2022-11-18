@@ -10,6 +10,9 @@ export const meetingAPI = apiSlice.injectEndpoints({
         "StoreMeeting",
         "UpdateMeeting",
         "DeleteMeeting",
+        "StoreAgenda",
+        "UpdateAgenda",
+        "DeleteAgenda",
       ],
     }),
     getMeeting: builder.query({
@@ -21,6 +24,9 @@ export const meetingAPI = apiSlice.injectEndpoints({
         "StoreMeeting",
         "UpdateMeeting",
         "DeleteMeeting",
+        "StoreAgenda",
+        "UpdateAgenda",
+        "DeleteAgenda",
       ],
     }),
     storeMeeting: builder.mutation({
